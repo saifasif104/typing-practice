@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Typing Practice</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+   <header>
+    <h1 id="title">Hira Language Center</h1> <!-- Add your title here -->
+</header>
+</head>  
+
+    <div class="container">
+        <h1>Typing Practice</h1>
+        <p id="paragraph">Click 'Start' to begin!</p>
+        <textarea id="inputBox" placeholder="Type here..." disabled></textarea>
+        <div class="buttons">
+            <button id="startButton" onclick="startTyping()">Start</button>
+            <button id="submitButton" onclick="submitTyping()" disabled>Submit</button>
+            <button id="resetButton" onclick="resetPractice()" disabled>Reset</button>
+        </div>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
+
+
+</body>
+</html>
