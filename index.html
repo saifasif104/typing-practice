@@ -19,15 +19,16 @@
             background-color: #f2f2f2;
         }
     </style>
-   <header>
-    <h1 id="title">Hira Language Center</h1> <!-- Add your title here -->
-</header>
-</head>  
+</head>
+<body>
+    <header>
+        <h1 id="title">Hira Language Center</h1> <!-- Add your title here -->
+    </header>
 
     <div class="container">
         <h1>Typing Practice</h1>
         <p id="paragraph">Click 'Start' to begin!</p>
-        <textarea id="inputBox" placeholder="Type here..." disabled></textarea>
+        <textarea id="inputBox" placeholder="Type here..." disabled spellcheck="false"></textarea>
         <div class="buttons">
             <button id="startButton" onclick="startTyping()">Start</button>
             <button id="submitButton" onclick="submitTyping()" disabled>Submit</button>
@@ -36,7 +37,5 @@
         <div id="result"></div>
     </div>
     <script src="script.js"></script>
-
-
 </body>
 </html>
