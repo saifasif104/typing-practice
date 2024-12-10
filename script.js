@@ -44,7 +44,7 @@ function submitTyping() {
     // Build highlighted paragraph
     let highlightedParagraph = originalWords.map((word, index) => {
         if (inputWords[index] !== word) {
-            return <span class="error">${word}</span>;
+            return `<span class="error">${word}</span>`;
         } else {
             correctWords++;
             return word;
@@ -61,11 +61,11 @@ function submitTyping() {
     // Calculate accuracy
     let accuracy = ((correctWords / originalWords.length) * 100).toFixed(2);
 
-    document.getElementById("result").innerHTML = 
+    document.getElementById("result").innerHTML = `
         <p>Time Taken: ${timeTaken.toFixed(2)} seconds</p>
         <p>WPM: ${wordsPerMinute.toFixed(2)}</p>
         <p>Accuracy: ${accuracy}%</p>
-    ;
+    `;
 
     // Disable input after submission
     document.getElementById("inputBox").disabled = true;
