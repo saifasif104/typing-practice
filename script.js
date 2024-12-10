@@ -41,9 +41,19 @@ function submitTyping() {
     let correctWords = 0;
     let totalWords = originalWords.length;
 
+    // Custom rule: normalize words for comparison
+    function normalize(word) {
+        return word.toLowerCase().replace(/[^a-z0-9]/gi, ""); // Convert to lowercase and remove punctuation
+    }
+
     // Build highlighted paragraph
     let highlightedParagraph = originalWords.map((word, index) => {
-        if (inputWords[index] !== word) {
+        let inputWord = inputWords[index] ? normalize(inputWords[index]) : "";
+        let originalWord = normalize(word);
+
+        // Check for spelling errors only
+        if (inputWord !== originalWord) {
+            // Highlight error
             return `<span class="error">${word}</span>`;
         } else {
             correctWords++;
@@ -59,7 +69,7 @@ function submitTyping() {
     let wordsPerMinute = (inputWords.length / timeTaken) * 60;
 
     // Calculate accuracy
-    let accuracy = ((correctWords / originalWords.length) * 100).toFixed(2);
+    let accuracy = ((correctWords / totalWords) * 100).toFixed(2);
 
     document.getElementById("result").innerHTML = `
         <p>Time Taken: ${timeTaken.toFixed(2)} seconds</p>
@@ -71,6 +81,7 @@ function submitTyping() {
     document.getElementById("inputBox").disabled = true;
     document.getElementById("submitButton").disabled = true;
 }
+
 
 function resetPractice() {
     document.getElementById("paragraph").innerText = "Click 'Start' to begin!";
