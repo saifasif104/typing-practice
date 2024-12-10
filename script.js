@@ -43,7 +43,7 @@ function submitTyping() {
 
     // Custom rule: normalize words for comparison
     function normalize(word) {
-        return word.toLowerCase().replace(/[^a-z0-9]/gi, ""); // Convert to lowercase and remove punctuation
+        return word.toLowerCase().replace(/[^a-z0-9]/g, ""); // Convert to lowercase and remove punctuation
     }
 
     // Build highlighted paragraph
@@ -61,6 +61,7 @@ function submitTyping() {
         }
     }).join(" ");
 
+    // Render the highlighted paragraph in the UI
     document.getElementById("paragraph").innerHTML = highlightedParagraph;
 
     // Calculate time taken
@@ -71,6 +72,7 @@ function submitTyping() {
     // Calculate accuracy
     let accuracy = ((correctWords / totalWords) * 100).toFixed(2);
 
+    // Display results
     document.getElementById("result").innerHTML = `
         <p>Time Taken: ${timeTaken.toFixed(2)} seconds</p>
         <p>WPM: ${wordsPerMinute.toFixed(2)}</p>
