@@ -41,27 +41,16 @@ function submitTyping() {
     let correctWords = 0;
     let totalWords = originalWords.length;
 
-    // Custom rule: normalize words for comparison
-    function normalize(word) {
-        return word.toLowerCase().replace(/[^a-z0-9]/g, ""); // Convert to lowercase and remove punctuation
-    }
-
     // Build highlighted paragraph
     let highlightedParagraph = originalWords.map((word, index) => {
-        let inputWord = inputWords[index] ? normalize(inputWords[index]) : "";
-        let originalWord = normalize(word);
-
-        // Check for spelling errors only
-        if (inputWord !== originalWord) {
-            // Highlight error
-            return `<span class="error">${word}</span>`;
+        if (inputWords[index] !== word) {
+            return <span class="error">${word}</span>;
         } else {
             correctWords++;
             return word;
         }
     }).join(" ");
 
-    // Render the highlighted paragraph in the UI
     document.getElementById("paragraph").innerHTML = highlightedParagraph;
 
     // Calculate time taken
@@ -70,20 +59,18 @@ function submitTyping() {
     let wordsPerMinute = (inputWords.length / timeTaken) * 60;
 
     // Calculate accuracy
-    let accuracy = ((correctWords / totalWords) * 100).toFixed(2);
+    let accuracy = ((correctWords / originalWords.length) * 100).toFixed(2);
 
-    // Display results
-    document.getElementById("result").innerHTML = `
+    document.getElementById("result").innerHTML = 
         <p>Time Taken: ${timeTaken.toFixed(2)} seconds</p>
         <p>WPM: ${wordsPerMinute.toFixed(2)}</p>
         <p>Accuracy: ${accuracy}%</p>
-    `;
+    ;
 
     // Disable input after submission
     document.getElementById("inputBox").disabled = true;
     document.getElementById("submitButton").disabled = true;
 }
-
 
 function resetPractice() {
     document.getElementById("paragraph").innerText = "Click 'Start' to begin!";
